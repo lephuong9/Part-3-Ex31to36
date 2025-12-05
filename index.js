@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 
+
 const cors = require('cors')
 app.use(cors())
 
+app.use(express.json())
 app.use(express.static('dist'))
 
 const morgan = require('morgan')
@@ -43,7 +45,7 @@ let persons = [
 app.use(morgan('tiny'))
 
 
-app.use(express.json())
+
 /* app.use(requestLogger) OLD WAYS, we use morgan now */
 
 
