@@ -108,6 +108,26 @@ app.post('/api/persons', (request, response) => {
 })
 
 
+app.put('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  const body = response.body
+
+  const person = {
+    name: body.name,
+    number: body.number
+  }
+  
+  const existPerson = persons.find(person => person.id == id)
+  if (!existPerson) {
+    persons[existPerson] = { ...persons[existPerson], ...person }
+    response.json(persons[existPerson])
+  } else {
+    response.status(404).json({ error: 'person not found' })
+  }
+  
+})
+
+
 
 app.delete('/api/persons/:id', (request, response) => {
   const id = request.params.id
